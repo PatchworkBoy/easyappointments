@@ -63,7 +63,14 @@ $db['default']['dbcollat'] = 'utf8_general_ci';
 $db['default']['swap_pre'] = '';
 $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
-
+if (Config::DB_SSL && $db['default']['dbdriver'] == 'mysqli') {
+    $db['default']['encrypt']['ssl_key']    = Config::DB_SSLKEY;
+    $db['default']['encrypt']['ssl_cert']   = Config::DB_SSLCERT;
+    $db['default']['encrypt']['ssl_ca']     = Config::DB_SSLCA;
+    $db['default']['encrypt']['ssl_capath'] = Config::DB_SSLCAPATH;
+    $db['default']['encrypt']['ssl_cipher'] = Config::DB_SSLCIPHER;
+    $db['default']['encrypt']['ssl_verify'] = Config::DB_SSLVERIFY;
+}
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */
